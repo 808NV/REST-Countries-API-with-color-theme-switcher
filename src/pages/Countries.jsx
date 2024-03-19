@@ -10,12 +10,14 @@ export default function Countries() {
   const { theme } = useContext(ThemeContext);
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("/data.json");
+      const res = await fetch("/public/data.json");
       const data = await res.json();
       setCountries(data);
     }
     fetchData();
   }, []);
+
+  console.log(countries);
 
   const regionFilter = searchParams.get("region");
 

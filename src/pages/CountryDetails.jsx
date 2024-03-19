@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import data from "/data.json";
+import data from "/public/data.json";
 import { useContext } from "react";
 import { ThemeContext } from "../App";
 
