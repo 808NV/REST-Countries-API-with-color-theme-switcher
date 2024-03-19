@@ -9,12 +9,10 @@ export default function Countries() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { theme } = useContext(ThemeContext);
 
-  const BASE_URL = "/public";
-
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`${BASE_URL}/data.json`);
+        const res = await fetch("./public/data.json");
         if (!res.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -27,6 +25,7 @@ export default function Countries() {
     }
     fetchData();
   }, []);
+  console.log(countries);
 
   const regionFilter = searchParams.get("region");
 
