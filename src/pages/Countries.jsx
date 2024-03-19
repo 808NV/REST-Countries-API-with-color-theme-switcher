@@ -69,123 +69,124 @@ export default function Countries() {
 
   return (
     <>
-      {countries ? (
-        <div className="input-filter">
-          <input
-            className="input"
+      <div className="input-filter">
+        <input
+          className="input"
+          id={theme ? "dark" : ""}
+          type="text"
+          placeholder="Search for a country..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        <span className="search-icon" id={theme ? "dark" : ""}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            className="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+          </svg>
+        </span>
+        <div className="filter" id={theme ? "dark" : ""}>
+          <button
+            className="btn btn-primary dropdown-toggle"
             id={theme ? "dark" : ""}
-            type="text"
-            placeholder="Search for a country..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          <span className="search-icon" id={theme ? "dark" : ""}>
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            onClick={() => setShowRegions(!showRegions)}
+          >
+            Filter By Region{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
               fill="currentColor"
-              className="bi bi-search"
+              className="bi bi-arrow-down-square"
               viewBox="0 0 16 16"
             >
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+              <path
+                fillRule="evenodd"
+                d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"
+              />
             </svg>
-          </span>
-          <div className="filter" id={theme ? "dark" : ""}>
-            <button
-              className="btn btn-primary dropdown-toggle"
-              id={theme ? "dark" : ""}
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              onClick={() => setShowRegions(!showRegions)}
-            >
-              Filter By Region{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-arrow-down-square"
-                viewBox="0 0 16 16"
+          </button>
+          <ul
+            className={`dropdown-menu ${showRegions ? "show" : null}`}
+            id={theme ? "dark" : ""}
+          >
+            <li>
+              <button
+                className="dropdown-item"
+                id={theme ? "dark" : ""}
+                type="button"
+                onClick={() => setSearchParams({ region: "Africa" })}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"
-                />
-              </svg>
-            </button>
-            <ul
-              className={`dropdown-menu ${showRegions ? "show" : null}`}
-              id={theme ? "dark" : ""}
-            >
-              <li>
-                <button
-                  className="dropdown-item"
-                  id={theme ? "dark" : ""}
-                  type="button"
-                  onClick={() => setSearchParams({ region: "Africa" })}
-                >
-                  Africa
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  id={theme ? "dark" : ""}
-                  type="button"
-                  onClick={() => setSearchParams({ region: "Americas" })}
-                >
-                  America
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  id={theme ? "dark" : ""}
-                  type="button"
-                  onClick={() => setSearchParams({ region: "Asia" })}
-                >
-                  Asia
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  id={theme ? "dark" : ""}
-                  type="button"
-                  onClick={() => setSearchParams({ region: "Europe" })}
-                >
-                  Europe
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  id={theme ? "dark" : ""}
-                  type="button"
-                  onClick={() => setSearchParams({ region: "Oceania" })}
-                >
-                  Oceania
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  id={theme ? "dark" : ""}
-                  type="button"
-                  onClick={() => setSearchParams({})}
-                >
-                  All
-                </button>
-              </li>
-            </ul>
-          </div>
+                Africa
+              </button>
+            </li>
+            <li>
+              <button
+                className="dropdown-item"
+                id={theme ? "dark" : ""}
+                type="button"
+                onClick={() => setSearchParams({ region: "Americas" })}
+              >
+                America
+              </button>
+            </li>
+            <li>
+              <button
+                className="dropdown-item"
+                id={theme ? "dark" : ""}
+                type="button"
+                onClick={() => setSearchParams({ region: "Asia" })}
+              >
+                Asia
+              </button>
+            </li>
+            <li>
+              <button
+                className="dropdown-item"
+                id={theme ? "dark" : ""}
+                type="button"
+                onClick={() => setSearchParams({ region: "Europe" })}
+              >
+                Europe
+              </button>
+            </li>
+            <li>
+              <button
+                className="dropdown-item"
+                id={theme ? "dark" : ""}
+                type="button"
+                onClick={() => setSearchParams({ region: "Oceania" })}
+              >
+                Oceania
+              </button>
+            </li>
+            <li>
+              <button
+                className="dropdown-item"
+                id={theme ? "dark" : ""}
+                type="button"
+                onClick={() => setSearchParams({})}
+              >
+                All
+              </button>
+            </li>
+          </ul>
         </div>
+      </div>
+
+      {countriesElements ? (
+        <div className="container">{countriesElements}</div>
       ) : (
         <h2>Loading...</h2>
       )}
-      <div className="container">{countriesElements}</div>
     </>
   );
 }
