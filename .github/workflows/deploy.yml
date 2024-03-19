@@ -25,7 +25,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ 'https://808nv.github.io/REST-Countries-API-with-color-theme-switcher/' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
