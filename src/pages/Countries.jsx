@@ -7,10 +7,12 @@ export default function Countries() {
   const [showRegions, setShowRegions] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
       try {
         const res = await fetch("data.json");
         if (!res.ok) {
@@ -18,6 +20,7 @@ export default function Countries() {
         }
         const data = await res.json();
         setCountries(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
         // Handle the error appropriately, e.g., display an error message to the user
@@ -66,6 +69,10 @@ export default function Countries() {
       </Link>
     </div>
   ));
+
+  if (loading) {
+    return <h2 className="loading">Loading...</h2>;
+  }
 
   return (
     <>
@@ -182,11 +189,7 @@ export default function Countries() {
         </div>
       </div>
 
-      {countriesElements ? (
-        <div className="container">{countriesElements}</div>
-      ) : (
-        <h2>Loading...</h2>
-      )}
+      <div className="container">{countriesElements}</div>
     </>
   );
 }
