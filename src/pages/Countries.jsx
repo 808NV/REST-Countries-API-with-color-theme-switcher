@@ -8,15 +8,23 @@ export default function Countries() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const { theme } = useContext(ThemeContext);
+
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("/public/data.json");
-      const data = await res.json();
-      setCountries(data);
+      try {
+        const res = await fetch("/public/data.json");
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await res.json();
+        setCountries(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle the error appropriately, e.g., display an error message to the user
+      }
     }
     fetchData();
   }, []);
-
   console.log(countries);
 
   const regionFilter = searchParams.get("region");
