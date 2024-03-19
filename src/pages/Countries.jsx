@@ -12,7 +12,7 @@ export default function Countries() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("./public/data.json");
+        const res = await fetch("data.json");
         if (!res.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -25,7 +25,6 @@ export default function Countries() {
     }
     fetchData();
   }, []);
-  console.log(countries);
 
   const regionFilter = searchParams.get("region");
 
