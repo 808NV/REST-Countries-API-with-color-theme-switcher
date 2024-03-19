@@ -10,7 +10,7 @@ export default function Countries() {
   const { theme } = useContext(ThemeContext);
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("src/data.json");
+      const res = await fetch("/data.json");
       const data = await res.json();
       setCountries(data);
     }
